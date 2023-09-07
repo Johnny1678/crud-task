@@ -3,15 +3,21 @@ import Task from "../models/Task.js";
 
 const router = Router()
 
-router.get("/", (req, res) => {
-    res.render('index')
+router.get("/", async (req, res) => {
+       const tasks = await Task.find().lean()
+       console.log(tasks[0])
+    
+    res.render('index', {tasks: tasks})
 })
 
-
-router.post("/tasks/add", (req, res) => {
+router.post("/tasks/add", async (req, res) => {
+   try {
     const task = Task(req.body)
-    console.log(task);
-    res.send('saved')
+    await task.save()
+   res.redirect("/")
+   } catch (error) {
+    console.log(error)
+   }
 })
 
 router.get("/about", (req, res) => {
