@@ -1,3 +1,9 @@
+
+# node dependecies
 node_modules/
 
+#build folder
+dist/
+
+# Variables de entorno
 .env

@@ -1,6 +1,6 @@
 import app from "./app";
 import "./utils/database.js";
-import {PORT}  from "./config.js";
+import { PORT } from "./config.js";
 
 
 app.listen(PORT, () => {

@@ -1,16 +1,11 @@
 import express from "express";
-import { create } from "express-handlebars";
 import path from "path";
 import morgan from "morgan";
+import { create } from "express-handlebars";
 
 import indexRoutes from "./routes/index.routes.js";
 
 const app = express();
-
-//middlewares
-app.use(morgan('dev'))
-app.use(express.urlencoded({extended: false}))
-
 
 //Configuracion express-handlebars
 app.set("views", path.join(__dirname, "views"));
@@ -23,9 +18,18 @@ const config = create({
 app.engine(".hbs", config.engine);
 app.set("view engine", ".hbs");
 
+//middlewares
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
 
-
-//Routes 
+//Routes
 app.use(indexRoutes);
+
+// public route
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use((req, res, next) => {
+  res.status(404).render("404");
+});
 
 export default app;
