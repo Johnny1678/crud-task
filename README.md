@@ -1,6 +1,6 @@
 # Proyecto CRUD Task
 
-Este es un proyecto CRUD Task. Asegúrate de seguir estos pasos para ejecutarlo en tu máquina local.
+Comandos para instalar el proyecto
 
 ```bash
 git clone https://github.com/Johnny1678/crud-task.git
